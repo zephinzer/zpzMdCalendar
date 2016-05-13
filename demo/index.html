@@ -1,0 +1,43 @@
+<html ng-app="zpzMdCalendarDemo">
+	<head>
+		<!-- if not using inbuild bower packages, replace the BELOW with your dependencies -->
+		<script src="../bower_components/angular/angular.js"></script>
+		<script src="../bower_components/angular-animate/angular-animate.min.js"></script>
+		<script src="../bower_components/angular-aria/angular-aria.min.js"></script>
+		<script src="../bower_components/angular-material/angular-material.min.js"></script>
+		<script src="../bower_components/angular-messages/angular-messages.min.js"></script>
+		<script src="../bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+		<!-- if not using inbuild bower packages, replace the ABOVE with your dependencies -->
+		
+		<script src="../dist/zpz-md-calendar.min.js"></script>
+		<script src="./index.js"></script>
+		
+		<link rel="stylesheet" href="../bower_components/angular-material/angular-material.min.css" />
+		<link rel="stylesheet" href="../bower_components/components-font-awesome/css/font-awesome.min.css" />
+		<link rel="stylesheet" href="../dist/zpz-md-calendar.min.css" />
+		<meta name="viewport" content="initial-scale=1, user-scalable=no, maximum-scale=1, width=device-width" />
+	</head>
+	<body layout="column"
+		layout-align="center center">
+		<i class="fa fa-calendar-o fa-4x"></i>
+		<h1>zpzMdCalendar</h1>
+		<small style="margin-top:-1em;">v1.0.0</small>
+		<h4>by zephinzer</h4>
+		<div layout="row">
+			<md-button aria-label="Production"
+				href="production">
+				<div layout="column">
+					<i class="fa fa-laptop fa-3x"></i>
+					View Production Mode
+				</div>
+			</md-button>
+			<md-button aria-label="Production"
+				href="development">
+				<div layout="column">
+					<i class="fa fa-code fa-3x"></i>
+					View Development Mode
+				</div>
+			</md-button>
+		</div>
+	</body>
+</html>

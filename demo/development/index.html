@@ -1,0 +1,147 @@
+<html ng-app="zpzMdCalendarDemo">
+	<head>
+		<!-- if not using inbuild bower packages, replace the BELOW with your dependencies -->
+		<script src="../../bower_components/angular/angular.js"></script>
+		<script src="../../bower_components/angular-animate/angular-animate.min.js"></script>
+		<script src="../../bower_components/angular-aria/angular-aria.min.js"></script>
+		<script src="../../bower_components/angular-material/angular-material.min.js"></script>
+		<script src="../../bower_components/angular-messages/angular-messages.min.js"></script>
+		<script src="../../bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+		<!-- if not using inbuild bower packages, replace the ABOVE with your dependencies -->
+		
+		<script src="../../src/js/zpz-md-calendar.templates.js"></script>
+		<script src="../../src/js/zpz-md-calendar.templates.data.js"></script>
+		<script src="../../src/js/zpz-md-calendar.js"></script>
+		<script src="../../src/js/zpz-md-calendar.const.js"></script>
+		<script src="../../src/js/zpz-md-calendar.controller.js"></script>
+		<script src="../../src/js/zpz-md-calendar.datarow.js"></script>
+		<script src="../../src/js/zpz-md-calendar.dataset.js"></script>
+		<script src="../../src/js/zpz-md-calendar.model.js"></script>
+		<script src="../../src/js/zpz-md-calendar.utility.js"></script>
+		<script src="../../src/js/zpz-md-calendar.view.js"></script>
+		<script src="../index.js"></script>
+		<script src="../data.js"></script>
+		<script src="./config.js"></script>
+		
+		<link rel="stylesheet" href="../../bower_components/angular-material/angular-material.min.css" />
+		<link rel="stylesheet" href="../../bower_components/components-font-awesome/css/font-awesome.min.css" />
+		<link rel="stylesheet" href="../../src/css/zpz-md-calendar.css" />
+		<meta name="viewport" content="initial-scale=1, user-scalable=no, maximum-scale=1, width=device-width" />
+		<style>
+			::-webkit-scrollbar {
+				display: none;
+			}
+		</style>
+	</head>
+	<body
+		layout="column"
+		layout-align="start" 
+		ng-controller="masterCtrl">
+		<md-content flex="35"
+			layout="column"
+			style="height:100%;">
+			<zpz-md-calendar
+				ng-config="config"
+				ng-model="dataModel"
+			></zpz-md-calendar>
+		</md-content>
+		<md-content flex="20"
+			layout="row"
+			layout-align="center start"
+			layout-wrap>
+			<div flex="100"
+				layout="row"
+				layout-align="start center">
+				Selected Date &nbsp;
+				<h3 ng-if="dataModel.selected.date" style="margin:0;">
+					<span ng-bind="dataModel.selected.date"></span>
+					<span ng-bind="months[dataModel.selected.month].full"></span>
+					<span ng-bind="dataModel.selected.year"></span>
+				</h3>
+				<h3 ng-if="!dataModel.selected.date" style="margin:0;">
+					<i>
+						N.A.
+					</i>
+				</h3>
+			</div>
+			<small flex="100"
+				layout="row">
+				<small><i class="fa fa-arrow-up"></i> ngModel.selected.{<i>date,month,year</i>}</small>
+			</small>
+			<div flex="100"
+				layout="row"
+				layout-align="start center">
+				Active Date &nbsp;
+				<h3 style="margin:0;">
+					<span ng-bind="dataModel.current.date"></span>
+					<span ng-bind="months[dataModel.current.month].full"></span>
+					<span ng-bind="dataModel.current.year"></span>
+				</h3>
+			</div>
+			<small flex="100"
+				layout="row">
+				<small><i class="fa fa-arrow-up"></i> ngModel.current.{<i>date,month,year</i>}</small>
+			</small>
+			<div flex="100">
+				<hr />
+				<div layout layout-align="center center"
+					ng-if="dataModel.events.length == 0">
+					<i>
+						Looks like there aren't any events on {{dataModel.current.date}} {{months[dataModel.current.month].full}}!
+					</i>
+				</div>
+			</div>
+			<small flex="100"
+				layout="row"
+				layout-align="center center">
+				<i class="fa fa-arrow-down"></i> 
+				&nbsp;ngModel.events&nbsp;
+				<i class="fa fa-arrow-down"></i>
+			</small>
+		</md-content>
+		<md-content flex="45"
+			layout="row"
+			layout-align="start start"
+			layout-wrap>
+			<div
+				flex-xs="100"
+				flex-gt-xs="50" 
+				ng-repeat="event in dataModel.events">
+				<md-card>
+					<md-card-content>
+						<h2 ng-bind="event.title"></h2>
+						<div ng-if="event.options.recurring.enabled == true">
+							<small>
+								Every <span ng-bind="event.options.recurring.every"></span> 
+								on <span ng-bind="days[event.getDateStart().getDay()].full"></span>
+								at {{event.dateStart.getHours()}}:{{((event.dateStart.getMinutes() < 10) ? '0' : '') + event.dateStart.getMinutes()}}
+							</small>
+							
+						</div>
+						<div ng-if="event.options.recurring.enabled != true">
+							<div>
+								Starts: {{event.dateStart.getHours()}}:{{((event.dateStart.getMinutes() < 10) ? '0' : '') + event.dateStart.getMinutes()}}
+							</div>
+							<div ng-if="!!event.dateEnd">
+								Ends: {{event.dateEnd.getHours()}}:{{((event.dateEnd.getMinutes() < 10) ? '0' : '') + event.dateEnd.getMinutes()}}
+							</div>
+						</div>
+						<hr />
+						<blockquote 
+							ng-bind-html="event.description | linky : '_blank'"
+							style="white-space: pre-wrap;"
+						></blockquote>
+						<hr />
+						<div 
+							ng-if="event.options.recurring.enabled"
+							style="background-color:#d01818;border-radius:5px;color:#FFF;display:inline-block;padding:2px 5px;">
+							<small>
+								Happens every <span ng-bind="event.options.recurring.every"></span>
+							</small>
+						</div>
+					</md-card-content>
+				</md-card>
+			</div>
+		</md-content>
+	</body>
+</html>

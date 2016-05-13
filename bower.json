@@ -1,0 +1,41 @@
+{
+  "name": "zpz-md-calendar",
+  "authors": [
+    "Joseph Matthias Goh <joseph@joeir.net>"
+  ],
+  "description": "A calendar UI for Angular Material",
+  "main": "",
+  "moduleType": [
+    "globals"
+  ],
+  "keywords": [
+    "calendar",
+    "angular",
+    "material",
+    "design",
+    "md",
+    "ngMaterial",
+    "view",
+    "date",
+    "time"
+  ],
+  "license": "MIT",
+  "homepage": "http://joeir.net",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {},
+  "resolutions": {
+    "angular": "1.5.5"
+  },
+  "devDependencies": {
+    "angular-material": "~1.0.5",
+    "components-font-awesome": "~4.5.0",
+    "angular-mocks": "^1.5.5",
+    "angular-sanitize": "^1.5.5"
+  }
+}

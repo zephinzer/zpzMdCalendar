@@ -1,0 +1,141 @@
+<md-menu id="button-options">
+	<md-button aria-label="Settings"
+		ng-class="{
+			'full-width': ngConfig.view.month.controller.layout == 1,
+			'md-icon-button': ngConfig.view.month.controller.layout == 2
+		}"
+		ng-click="options.onClick($mdOpenMenu, $event)">
+		<div layout="row"
+			layout-align="center center"
+			ng-if="ngConfig.view.month.controller.layout == 1">
+			<div style="text-align:center;width:1.5em;">
+				<i class="fa fa-gear"></i>
+			</div>
+			Settings
+		</div>
+		<i class="fa fa-gear" ng-if="ngConfig.view.month.controller.layout == 2"></i>
+	</md-button>
+	<md-menu-content>
+		<md-menu-item>
+			<md-button aria-label="Year Navigation"
+				ng-click="ngConfig.view.display.navigation.year = !ngConfig.view.display.navigation.year">
+				<div layout="row"
+					layout-align="start center">
+					<div style="width:2em;text-align:center;">
+						<i class="fa fa-check-circle"
+							ng-if="ngConfig.view.display.navigation.year == true"
+							style="color:#008800;"></i>
+						<i class="fa fa-circle-thin"
+							ng-if="ngConfig.view.display.navigation.year == false"
+							style="color:#CCC;"></i>
+					</div>
+					Year Navigation
+				</div>
+			</md-button>
+		</md-menu-item>
+		<md-menu-item>
+			<md-button aria-label="Month Navigation"
+				ng-click="ngConfig.view.display.navigation.month = !ngConfig.view.display.navigation.month">
+				<div layout="row"
+					layout-align="start center">
+					<div style="width:2em;text-align:center;">
+						<i class="fa fa-check-circle"
+							ng-if="ngConfig.view.display.navigation.month == true"
+							style="color:#008800;"></i>
+						<i class="fa fa-circle-thin"
+							ng-if="ngConfig.view.display.navigation.month == false"
+							style="color:#CCC;"></i>
+					</div>
+					Month Navigation
+				</div>
+			</md-button>
+		</md-menu-item>
+		<md-menu-item>
+			<md-button aria-label="Day Navigation"
+				ng-click="ngConfig.view.display.navigation.date = !ngConfig.view.display.navigation.date">
+				<div layout="row"
+					layout-align="start center">
+					<div style="width:2em;text-align:center;">
+						<i class="fa fa-check-circle"
+							ng-if="ngConfig.view.display.navigation.date == true"
+							style="color:#008800;"></i>
+						<i class="fa fa-circle-thin"
+							ng-if="ngConfig.view.display.navigation.date == false"
+							style="color:#CCC;"></i>
+					</div>
+					Day Navigation
+				</div>
+			</md-button>
+		</md-menu-item>
+		<md-divider></md-divider>
+		<md-menu-item>
+			<md-button aria-label="Checkered Calendar"
+				ng-click="ngConfig.view.display.checkered = !ngConfig.view.display.checkered">
+				<div layout="row"
+					layout-align="start center">
+					<div style="width:2em;text-align:center;">
+						<i class="fa fa-check-circle"
+							ng-if="ngConfig.view.display.checkered == true"
+							style="color:#008800;"></i>
+						<i class="fa fa-circle-thin"
+							ng-if="ngConfig.view.display.checkered == false"
+							style="color:#CCC;"></i>
+					</div>
+					Checkered Calendar
+				</div>
+			</md-button>
+		</md-menu-item>
+		<md-menu-item>
+			<md-button aria-label="Other Months Visible"
+				ng-click="ngConfig.view.display.showOtherMonths = !ngConfig.view.display.showOtherMonths">
+				<div layout="row"
+					layout-align="start center">
+					<div style="width:2em;text-align:center;">
+						<i class="fa fa-check-circle"
+							ng-if="ngConfig.view.display.showOtherMonths == true"
+							style="color:#008800;"></i>
+						<i class="fa fa-circle-thin"
+							ng-if="ngConfig.view.display.showOtherMonths == false"
+							style="color:#CCC;"></i>
+					</div>
+					Other Months Visible
+				</div>
+			</md-button>
+		</md-menu-item>
+		<md-divider></md-divider>
+		<md-menu-item>
+			<md-button aria-label="Day Headers"
+				ng-click="ngConfig.view.month.dayNames.visible = !ngConfig.view.month.dayNames.visible">
+				<div layout="row"
+					layout-align="start center">
+					<div style="width:2em;text-align:center;">
+						<i class="fa fa-check-circle"
+							ng-if="ngConfig.view.month.dayNames.visible == true"
+							style="color:#008800;"></i>
+						<i class="fa fa-circle-thin"
+							ng-if="ngConfig.view.month.dayNames.visible == false"
+							style="color:#CCC;"></i>
+					</div>
+					Day Name Header Bar
+				</div>
+			</md-button>
+		</md-menu-item>
+		<md-menu-item>
+			<md-button aria-label="Week Numbers"
+				ng-click="ngConfig.view.month.weekNumber.visible = !ngConfig.view.month.weekNumber.visible">
+				<div layout="row"
+					layout-align="start center">
+					<div style="width:2em;text-align:center;">
+						<i class="fa fa-check-circle"
+							ng-if="ngConfig.view.month.weekNumber.visible == true"
+							style="color:#008800;"></i>
+						<i class="fa fa-circle-thin"
+							ng-if="ngConfig.view.month.weekNumber.visible == false"
+							style="color:#CCC;"></i>
+					</div>
+					Week Numbers Bar
+				</div>
+			</md-button>
+		</md-menu-item>
+	</md-menu-content>
+</md-menu>

@@ -1,0 +1,172 @@
+<div class="toolbar top"
+	layout="row"
+	layout-align="center center">
+	<div layout="row"
+		layout-align="start center"
+		ng-class="{
+			'flex-xs-30 flex-20': ngConfig.view.month.controller.layout == 1
+		}"
+		ng-if="ngConfig.view.month.controller.layout == 1">
+		
+		<md-button aria-label="Previous Year"
+			class="md-icon-button"
+			ng-click="onNavigate.previousYear()"
+			ng-if="ngConfig.view.display.navigation.year == true"
+			style="margin:0;">
+			<md-tooltip aria-label="Previous Year"
+				md-direction="right"
+				ng-if="ngConfig.view.display.navigation.tooltip == true">
+				Previous Year
+			</md-tooltip>
+			<i class="fa fa-chevron-left fa-2x"></i>
+		</md-button>
+		<md-button aria-label="Previous Month"
+			class="md-icon-button"
+			ng-click="onNavigate.previousMonth()"
+			ng-if="ngConfig.view.display.navigation.month == true"
+			style="margin:0;">
+			<md-tooltip aria-label="Previous Month"
+				md-direction="right"
+				ng-if="ngConfig.view.display.navigation.tooltip == true">
+				Previous Month
+			</md-tooltip>
+			<i class="fa fa-caret-left fa-2x"></i>
+		</md-button>
+		<md-button aria-label="Previous Day"
+			class="md-icon-button"
+			ng-click="ngModel.previousDay()"
+			ng-if="ngConfig.view.display.navigation.date == true"
+			style="margin:0;">
+			<md-tooltip aria-label="Yesterday"
+				md-direction="right"
+				ng-if="ngConfig.view.display.navigation.tooltip == true">
+				Yesterday
+			</md-tooltip>
+			<i class="fa fa-chevron-left"></i>
+		</md-button>
+	</div>
+	<zpz-md-calendar-button-options
+		ng-if="ngConfig.view.month.controller.layout == 2 &&
+			ngConfig.view.display.options.visible == true"
+	></zpz-md-calendar-button-options>
+	<div
+		layout="row"
+		layout-wrap
+		ng-class="{
+			'flex layout-align-center-center': ngConfig.view.month.controller.layout == 1,
+			'flex-xs-30 flex-40 layout-align-start-center': ngConfig.view.month.controller.layout == 2
+		}">
+		<div flex-gt-xs="5" ng-if="ngConfig.view.display.options.visible != true"></div>
+		<div flex-xs="100"
+			layout-xs="row">
+			<div hide-gt-xs style="width:10px;"></div>
+			<div flex>
+				<md-select
+					aria-label="Month Selector"
+					ng-change="onNavigate.monthChanged()"
+					ng-model="ngModel.current.month"
+					style="margin-top:0;margin-bottom:0;">
+					<md-option ng-value="month.value" ng-repeat="month in months">
+						<span hide-xs ng-bind="month.full"></span>
+						<span hide-gt-xs ng-bind="month.short"></span>
+					</md-option>
+				</md-select>
+			</div>
+		</div>
+		<div flex-xs="100"
+			layout-xs="row">
+			<div hide-gt-xs style="width:10px;"></div>
+			<div flex>
+				<md-select
+					aria-label="Year Selector"
+					ng-change="onNavigate.yearChanged()"
+					ng-model="ngModel.current.year"
+					style="margin-top:0;margin-bottom:0;">
+					<md-option ng-value="year" ng-repeat="year in years">
+						<span ng-bind="year"></span>
+					</md-option>
+				</md-select>
+			</div>
+		</div>
+	</div>
+	<div 
+		layout="row"
+		layout-align="end center"
+		ng-class="{
+			'flex-xs-30 flex-20': ngConfig.view.month.controller.layout == 1,
+			'flex-xs-70 flex-60': ngConfig.view.month.controller.layout == 2
+		}">
+		<md-button aria-label="Previous Year"
+			class="md-icon-button"
+			ng-click="onNavigate.previousYear()"
+			ng-if="ngConfig.view.month.controller.layout == 2 && (ngConfig.view.display.navigation.year == true)"
+			style="margin:0;">
+			<md-tooltip aria-label="Previous Year"
+				md-direction="right"
+				ng-if="ngConfig.view.display.navigation.tooltip == true">
+				Previous Year
+			</md-tooltip>
+			<i class="fa fa-chevron-left fa-2x"></i>
+		</md-button>
+		<md-button aria-label="Previous Month"
+			class="md-icon-button"
+			ng-click="onNavigate.previousMonth()"
+			ng-if="ngConfig.view.month.controller.layout == 2 && (ngConfig.view.display.navigation.month == true)"
+			style="margin:0;">
+			<md-tooltip aria-label="Previous Month"
+				md-direction="right"
+				ng-if="ngConfig.view.display.navigation.tooltip == true">
+				Previous Month
+			</md-tooltip>
+			<i class="fa fa-caret-left fa-2x"></i>
+		</md-button>
+		<md-button aria-label="Previous Day"
+			class="md-icon-button"
+			ng-click="onNavigate.previousDay()"
+			ng-if="ngConfig.view.month.controller.layout == 2 && (ngConfig.view.display.navigation.date == true)"
+			style="margin:0;">
+			<md-tooltip aria-label="Yesterday"
+				md-direction="right"
+				ng-if="ngConfig.view.display.navigation.tooltip == true">
+				Yesterday
+			</md-tooltip>
+			<i class="fa fa-angle-left fa-2x"></i>
+		</md-button>
+		<md-button aria-label="Next Day"
+			class="md-icon-button"
+			ng-click="onNavigate.nextDay()"
+			ng-if="ngConfig.view.display.navigation.date == true"
+			style="margin:0;">
+			<md-tooltip aria-label="Tomorrow"
+				md-direction="left"
+				ng-if="ngConfig.view.display.navigation.tooltip == true">
+				Tomorrow
+			</md-tooltip>
+			<i class="fa fa-angle-right fa-2x"></i>
+		</md-button>
+		<md-button aria-label="Next Month"
+			class="md-icon-button"
+			ng-click="onNavigate.nextMonth()"
+			ng-if="ngConfig.view.display.navigation.month == true"
+			style="margin:0;">
+			<md-tooltip aria-label="Next Month"
+				md-direction="left"
+				ng-if="ngConfig.view.display.navigation.tooltip == true">
+				Next Month
+			</md-tooltip>
+			<i class="fa fa-caret-right fa-2x"></i>
+		</md-button>
+		<md-button aria-label="Next Year"
+			class="md-icon-button"
+			ng-click="onNavigate.nextYear()"
+			ng-if="ngConfig.view.display.navigation.year == true"
+			style="margin:0;">
+			<md-tooltip aria-label="Next Year"
+				md-direction="left"
+				ng-if="ngConfig.view.display.navigation.tooltip == true">
+				Next Year
+			</md-tooltip>
+			<i class="fa fa-chevron-right fa-2x"></i>
+		</md-button>
+	</div>
+</div>

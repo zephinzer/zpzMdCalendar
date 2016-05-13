@@ -1,0 +1,32 @@
+{
+  "name": "zpz-md-calendar",
+  "version": "1.0.0",
+  "description": "Calendar module created based on Angular Material.",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "zephinzer",
+  "license": "MIT",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-angular-templatecache": "^1.8.0",
+    "gulp-clean-css": "^2.0.7",
+    "gulp-concat": "^2.6.0",
+    "gulp-minify-css": "^1.2.4",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^1.5.3",
+    "karma": "^0.13.22",
+    "karma-mocha": "^1.0.1",
+    "karma-mocha-reporter": "^2.0.2",
+    "karma-phantomjs-launcher": "^1.0.0",
+    "karma-should": "^1.0.0",
+    "mocha": "^2.4.5",
+    "phantomjs": "^2.1.7",
+    "phantomjs-prebuilt": "^2.1.7",
+    "should": "^8.3.1"
+  }
+}

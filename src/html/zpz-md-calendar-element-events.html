@@ -1,0 +1,89 @@
+<div 
+	class="events-container"
+	layout="row"
+	layout-align="end end"
+	layout-wrap
+	style="
+	bottom:0;
+	height:100%;
+	padding:3px;
+	position:absolute;
+	top:0;
+	width:100%;
+	z-index:3;
+">
+	<div class="event" 
+		ng-if="
+			(ngModel.view.data[week.index][$index].month == ngModel.current.month) ||
+			(ngConfig.view.display.showOtherMonths == true)
+		"
+		style="font-size:10px;">
+		<i class="{{ngConfig.view.display.date.event.indicator.classes}}"
+			ng-class="{'indicator':true}"
+			ng-if="
+				(ngConfig.view.display.date.event.indicator.style == 'dots') ||
+				(ngConfig.view.display.date.event.indicator.style == 'both')
+			"
+			ng-repeat="
+				item in ngModel.data.data.map[ngModel.current.year][ngModel.view.data[week.index][$index].month][ngModel.view.data[week.index][$index].date]
+			"
+			style="padding:1px;">
+		</i><i class="{{ngConfig.view.display.date.event.indicator.classes}}"
+			ng-class="{'indicator':true}"
+			ng-if="
+				(ngConfig.view.display.date.event.indicator.style == 'dots') ||
+				(ngConfig.view.display.date.event.indicator.style == 'both')
+			"
+			ng-repeat="
+				item in ngModel.data.data.every['year'][ngModel.view.data[week.index][$index].month][ngModel.view.data[week.index][$index].date]
+			"
+			style="padding:1px;">
+		</i><i class="{{ngConfig.view.display.date.event.indicator.classes}}"
+			ng-class="{'indicator':true}"
+			ng-if="
+				(ngConfig.view.display.date.event.indicator.style == 'dots') ||
+				(ngConfig.view.display.date.event.indicator.style == 'both')
+			"
+			ng-repeat="
+				item in ngModel.data.data.every['month'][ngModel.view.data[week.index][$index].date]
+			"
+			style="padding:1px;">
+		</i><i class="{{ngConfig.view.display.date.event.indicator.classes}}"
+			ng-class="{'indicator':true}"
+			ng-if="
+				(ngConfig.view.display.date.event.indicator.style == 'dots') ||
+				(ngConfig.view.display.date.event.indicator.style == 'both')
+			"
+			ng-repeat="
+				item in ngModel.data.data.every['week'][( (($index + ngConfig.model.firstDay) > 6) ? (7 - ($index + ngConfig.model.firstDay)) : ($index + ngConfig.model.firstDay) )]
+			"
+			style="padding:1px;">
+		</i>
+		<span
+			ng-bind="'[' 
+				+ 
+				(
+					ngModel.data.data.map[ngModel.current.year][ngModel.view.data[week.index][$index].month][ngModel.view.data[week.index][$index].date].length +
+					ngModel.data.data.every['year'][ngModel.view.data[week.index][$index].month][ngModel.view.data[week.index][$index].date].length +
+					ngModel.data.data.every['month'][ngModel.view.data[week.index][$index].date].length + 
+					ngModel.data.data.every['week'][( (($index + ngConfig.model.firstDay) > 6) ? (7 - ($index + ngConfig.model.firstDay)) : ($index + ngConfig.model.firstDay) )].length
+				) 
+				+  
+			']'" 
+			ng-if="
+				( (ngConfig.view.display.date.event.indicator.style == 'number') ||
+					(ngConfig.view.display.date.event.indicator.style == 'both')
+				) && (
+					(
+						ngModel.data.data.map[ngModel.current.year][ngModel.view.data[week.index][$index].month][ngModel.view.data[week.index][$index].date].length +
+						ngModel.data.data.every['year'][ngModel.view.data[week.index][$index].month][ngModel.view.data[week.index][$index].date].length +
+						ngModel.data.data.every['month'][ngModel.view.data[week.index][$index].date].length + 
+						ngModel.data.data.every['week'][( (($index + ngConfig.model.firstDay) > 6) ? (7 - ($index + ngConfig.model.firstDay)) : ($index + ngConfig.model.firstDay) )].length
+					) 
+					> 0
+				)
+			"
+			style="font-size:1.5em;">
+		</span>
+	</div>
+</div>

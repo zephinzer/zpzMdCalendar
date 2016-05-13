@@ -1,0 +1,23 @@
+<div class="toolbar days" 
+	layout="row"
+	style="background-color:{{ngConfig.view.month.dayNames.background.color || 'transparent'}};">
+	<div class="toolbar week"
+		ng-if="ngConfig.view.month.weekNumber.visible"></div>
+	
+	<div class="day"
+		flex 
+		layout="column"
+		ng-repeat="day in days.slice(ngModel.config.firstDay)"
+		style="color:{{ngConfig.view.month.dayNames.color || '#333'}};">
+		<span ng-bind="day.short" hide-xs></span>
+		<span ng-bind="day.alpha" hide-gt-xs></span>
+	</div>
+	<div class="day"
+		flex 
+		layout="column"
+		ng-repeat="day in days.slice(0, ngModel.config.firstDay)"
+		style="color:{{ngConfig.view.month.dayNames.color || '#333'}};">
+		<span ng-bind="day.short" hide-xs></span>
+		<span ng-bind="day.alpha" hide-gt-xs></span>
+	</div>
+</div>

@@ -1,0 +1,202 @@
+<style>
+	md-select:not([disabled]):focus .md-select-value {
+		border-bottom-color: {{ngConfig.view.display.date.selected.background.color || '#d01818'}} !important; 
+	}
+	md-select-menu md-option[selected] {
+		color: {{ngConfig.view.display.date.selected.background.color || '#d01818'}} !important;
+	}
+	.zpz-md-calendar.container {
+		font-family: {{ngConfig.view.display.font.family || 'Source Code Pro'}} !important;
+	}
+	.zpz-md-calendar.container .week .date {
+		background-color: {{ngConfig.view.display.date.background.color || '#FFFFFF'}};
+	}
+	/* view.display.checkered == true */
+	.zpz-md-calendar.container.checkered .week:nth-child(2n) .date:nth-child(2n+1),
+	.zpz-md-calendar.container.checkered .week:nth-child(2n+1) .date:nth-child(2n) {
+		background-color: {{ngConfig.view.display.date.checks.background.color.light || 'rgba(255,255,255,0.3)'}};
+	}
+	.zpz-md-calendar.container.checkered .week:nth-child(2n) .date:nth-child(2n),
+	.zpz-md-calendar.container.checkered .week:nth-child(2n+1) .date:nth-child(2n+1) {
+		background-color: {{ngConfig.view.display.date.checks.background.color.dark || 'rgba(255,255,255,0.5)'}};
+	}
+	/* end */
+	.zpz-md-calendar.container .week .date .label {
+		color: {{ngConfig.view.display.date.color || '#333333'}} !important;
+		font-family: {{ngConfig.view.display.date.font.family}} !important;
+		font-size: {{ngConfig.view.display.date.font.size || '1.1em'}};
+	}
+	/* view.display.date.today */
+	.zpz-md-calendar.container .week .date.today {
+		background-color: {{ngConfig.view.display.date.today.background.color || 'transparent'}} !important;
+	}
+	.zpz-md-calendar.container .week .date.today .label {
+		color: {{ngConfig.view.display.date.today.color || '#00FF00'}} !important;
+		font-weight: {{ngConfig.view.display.date.today.fontWeight || '600'}} !important;
+	}
+	/**/
+	/* view.display.date.inactive */
+	.zpz-md-calendar.container .week .date.inactive {
+		background-color: {{ngConfig.view.display.date.inactive.background.color || 'transparent'}} !important;
+	}
+	.zpz-md-calendar.container .week .date.inactive .label { 
+		color: {{ngConfig.view.display.date.inactive.color || '#CCC'}} !important;
+	}
+	/**/
+	/* view.display.date.inactive */
+	.zpz-md-calendar.container .week .date.disabled {
+		background-color: {{ngConfig.view.display.date.inactive.background.color || 'transparent'}} !important;
+	}
+	.zpz-md-calendar.container .week .date.disabled .label { 
+		color: {{ngConfig.view.display.date.inactive.color || '#CCC'}} !important;
+		transform: none !important;
+		-webkit-transform: none !important;
+	}
+	/**/
+	/* view.display.date.active */
+	.zpz-md-calendar.container .week .date.active {
+		background-color: {{ngConfig.view.display.date.active.background.color || 'transparent'}} !important;
+		cursor:pointer;
+	}
+	.zpz-md-calendar.container .week .date.active .label { 
+		color: {{ngConfig.view.display.date.active.color || '#5599FF'}} !important;
+	}
+	/**/
+	/* view.display.date.selected */
+	.zpz-md-calendar.container .week .date.selected {
+		background-color: {{ngConfig.view.display.date.selected.background.color || 'transparent'}} !important;
+	}
+	.zpz-md-calendar.container .week .date.selected .label {
+		color: {{ngConfig.view.display.date.selected.color || '#FF0000'}} !important;
+	}
+	/**/
+	/* view.display.date.inactive */
+	.zpz-md-calendar.container .week .date.inactive.selected,
+	.zpz-md-calendar.container .week .date.disabled.selected {
+		background-color: {{ngConfig.view.display.date.inactiveSelected.background.color || '#FFC8C8'}} !important;
+	}
+	.zpz-md-calendar.container .week .date.inactive.selected .label,
+	.zpz-md-calendar.container .week .date.disabled.selected .label { 
+		color: {{ngConfig.view.display.date.inactiveSelected.color || '#FEFEFE'}} !important;
+	}
+	/**/
+	/* view.display.date.hidden */
+	.zpz-md-calendar.container .week .date.hidden.selected {
+		background-color: {{ngConfig.view.display.date.inactiveSelected.background.color || 'transparent'}} !important;
+	}
+	.zpz-md-calendar.container .week .date.hidden.selected .label { 
+		color: {{ngConfig.view.display.date.inactiveSelected.color || 'transparent'}} !important;
+	}
+	/**/
+	/* view.display.date.event.indicator */
+	.zpz-md-calendar.container .week .date .events-container .event .indicator {
+		color: {{ngConfig.view.display.date.event.indicator.color || '#000000'}} !important;
+	}
+	/**/
+	.zpz-md-calendar.container .week .date,
+	.zpz-md-calendar.container .week .date .label {
+		cursor: default;
+		transition: {{ngConfig.view.display.animation.transitionTime}} ease all;
+	}
+	@media screen and (max-width:230px) {
+		.zpz-md-calendar.container .week .date .label {
+			font-size:0.8em;
+		}
+	}
+</style>
+<div class="zpz-md-calendar container"
+	layout="column"
+	ng-class="{
+		'checkered': ngConfig.view.display.checkered == true
+	}"
+	ng-init="ngModel.init()"
+	style="height:100%;widht:100%;">
+	<zpz-md-calendar-toolbar-controller
+		ng-if="ngConfig.view.month.controller.visible == true &&
+			ngConfig.view.month.controller.position == 'top'"
+	></zpz-md-calendar-toolbar-controller>
+	
+	<div ng-if="ngConfig.view.month.controller.layout == 1 &&ngConfig.view.month.controller.position =='bottom'">
+		<div class="toolbar options"
+			layout="column"
+			ng-if="ngConfig.view.display.options.visible == true">
+			<zpz-md-calendar-button-options
+				ng-if="ngConfig.view.display.options.visible == true"
+			></zpz-md-calendar-button-options>
+		</div>
+	</div>
+	
+	<zpz-md-calendar-toolbar-days
+		ng-if="ngConfig.view.month.dayNames.visible && 
+			ngConfig.view.month.dayNames.position == 'top'"
+	></zpz-md-calendar-toolbar-days>
+	
+	<div flex
+		layout="column">
+		<div class="week"
+			flex
+			layout="row"
+			ng-if="($index == 0) || (!!ngModel.view.data[$index][0].date)"
+			ng-init="week.index = $index"
+			ng-repeat="week in weeks">
+			<div class="toolbar week"
+				layout="column"
+				layout-align="center"
+				ng-if="ngConfig.view.month.weekNumber.visible">
+				<small ng-bind="$index"></small>
+			</div>
+			<div class="date"
+				flex 
+				id="date_{{ngModel.current.year + '_' + ngModel.current.month + '_' + ngModel.view.data[week.index][$index].date}}"
+				layout="column"
+				ng-class="{
+					'today'				: (ngModel.current.today.year == ngModel.current.year) &&
+											(ngModel.current.today.month == ngModel.current.month) &&
+											(ngModel.view.data[week.index][$index].date == ngModel.current.today.date),
+					'active'			: (ngModel.view.data[week.index][$index].month == ngModel.current.month) &&
+											(ngModel.view.data[week.index][$index].date == ngModel.current.date) &&
+											(ngConfig.control.selectLevels == 2),
+					'selected'			: (ngModel.selected.year == ngModel.current.year) &&
+											(ngModel.selected.month == ngModel.view.data[week.index][$index].month) &&
+											(ngModel.selected.date == ngModel.view.data[week.index][$index].date) &&
+											(ngConfig.control.selectLevels >= 1),
+					'inactive'			: (ngConfig.control.selectOtherMonths) && (ngModel.view.data[week.index][$index].month != ngModel.current.month),
+					'disabled'			: (!ngConfig.control.selectOtherMonths && ngConfig.view.display.showOtherMonths) && (ngModel.view.data[week.index][$index].month != ngModel.current.month),
+					'hidden'			: !(ngConfig.control.selectOtherMonths || ngConfig.view.display.showOtherMonths) && (ngModel.view.data[week.index][$index].month != ngModel.current.month),
+					'hover-scale'		: (ngConfig.view.display.date.hover.effect == 'scale'),
+					'hover-translate'	: (ngConfig.view.display.date.hover.effect == 'translate'),
+				}"
+				ng-click="date.onClick(ngModel.view.data[week.index][$index], (($index + ngConfig.model.firstDay) > 6) ? (7 - ($index + ngConfig.model.firstDay)) : ($index + ngConfig.model.firstDay))"
+				ng-repeat="day in days"
+				style="position:relative;">
+				<zpz-md-calendar-element-date
+					ng-if="
+						(ngModel.view.data[week.index][$index].month == ngModel.current.month) ||
+						(ngConfig.view.display.showOtherMonths == true)
+					"
+				></zpz-md-calendar-element-date>
+				<zpz-md-calendar-element-events
+					ng-if="ngConfig.view.display.date.event.visible == true">
+				<zpz-md-calendar-element-events>
+			</div>
+		</div>
+	</div>
+	<zpz-md-calendar-toolbar-days
+		ng-if="ngConfig.view.month.dayNames.visible && 
+			ngConfig.view.month.dayNames.position == 'bottom'"
+	></zpz-md-calendar-toolbar-days>
+
+	<div ng-if="ngConfig.view.month.controller.layout == 1 &&ngConfig.view.month.controller.position =='top'">
+		<div class="toolbar options"
+			layout="column"
+			ng-if="ngConfig.view.display.options.visible == true">
+			<zpz-md-calendar-button-options
+				ng-if="ngConfig.view.display.options.visible == true"
+			></zpz-md-calendar-button-options>
+		</div>
+	</div>
+	<zpz-md-calendar-toolbar-controller
+		ng-if="ngConfig.view.month.controller.visible == true &&
+			ngConfig.view.month.controller.position == 'bottom'"
+	></zpz-md-calendar-toolbar-controller>
+</div>
