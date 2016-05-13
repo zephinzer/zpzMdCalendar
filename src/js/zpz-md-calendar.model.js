@@ -170,7 +170,6 @@ angular.module('zpzMdCalendar')
 		zpzMdCalendarModelObject.prototype.updateView = function() {
 			switch(this.view.mode.primary) {
 				case zpzMdCalendarConst.view.mode.calendar:
-					console.log('happened');
 					this.events = this.data.getEventsOn(
 						new Date(this.getCurrentYear(), 
 						this.getCurrentMonth(),
