@@ -98,8 +98,8 @@ angular.module("zpzMdCalendarTemplates", [])
 			controller: 'zpzMdCalendarCtrl',
 			restrict: 'E',
 			scope: {
-				ngConfig: '=',
-				ngModel: '='
+				ngConfig: '=?',
+				ngModel: '=?'
 			},
 			templateUrl: (
 				zpzMdCalendarSvc.constant.templateFile.element.main ||
@@ -1470,21 +1470,27 @@ angular.module('zpzMdCalendar')
 					/// if the current month contains a recursive event in one of
 					/// it's days, the month will have been initialized to an
 					/// array of size 32, otherwise, no such events exist.
-					if(!!this.data.data.every['year'][this.getCurrentMonth()]) {
+					if(!!this.data.data.every['year'] && 
+						!!this.data.data.every['year'][this.getCurrentMonth()]
+					) {
 						var yearlyEvents = this.data.data.every['year'][this.getCurrentMonth()][this.getCurrentDate()];
 						for(var i = 0; i < yearlyEvents.length; ++i) {
 							this.events.push(yearlyEvents[i]);
 						}
 					}
 					/// for recurring monthly events
-					if(!!this.data.data.every['month'][this.getCurrentDate()]) {
+					if(!!this.data.data.every['month'] && 
+						!!this.data.data.every['month'][this.getCurrentDate()]
+					) {
 						var monthlyEvents = this.data.data.every['month'][this.getCurrentDate()];
 						for(var i = 0; i < monthlyEvents.length; ++i) {
 							this.events.push(monthlyEvents[i]);
 						}
 					}
 					/// for recurring weekly events
-					if(!!this.data.data.every['week'][this.getCurrentDay()]) {
+					if(!!this.data.data.every['week'] && 
+						!!this.data.data.every['week'][this.getCurrentDay()]
+					) {
 						var weeklyEvents = this.data.data.every['week'][this.getCurrentDay()];
 						for(var i = 0; i < weeklyEvents.length; ++i) {
 							this.events.push(weeklyEvents[i]);
