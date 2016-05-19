@@ -28,8 +28,8 @@ angular.module("zpzMdCalendarTemplates", [])
 			controller: 'zpzMdCalendarCtrl',
 			restrict: 'E',
 			scope: {
-				ngConfig: '=',
-				ngModel: '='
+				ngConfig: '=?',
+				ngModel: '=?'
 			},
 			templateUrl: (
 				zpzMdCalendarSvc.constant.templateFile.element.main ||

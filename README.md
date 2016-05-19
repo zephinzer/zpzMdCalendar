@@ -155,6 +155,13 @@ demo
   - index.js 
 ```
 
+## Changelog
+### v1
+#### v1.0
+##### v1.0.1
+Bug fix to allow for optional ngModel and ngConfig 
+##### v1.0.0
+Initial release
 
 ## Development
 This section is for developers who wish to contribute to this 
