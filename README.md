@@ -358,3 +358,24 @@ Run the following command to do a build:
 ```
 gulp build
 ```
+
+You may have to run this twice to compile the HTML properly. 
+Look for changes in the reported size of the files.
+
+
+### Releasing
+To bump a version number so that it reflects in Bower, you need
+to run:
+
+```
+git tag -a vX.Y.Z -m "Functionality added"
+```
+
+X is the major version, Y is the minor version and Z is the patch
+version. Bump Z for bug fixes and minor enhancements. Bump Y for
+new user-directed functionality. Bump X for major UI and developer
+changes. 
+
+Send me a pull request and I will do the publishing on Bower and NPM.
+
+Cheers!
