@@ -4,6 +4,35 @@ angular.module('zpzMdCalendar')
 		var svc = {};
 		
 		/**
+		 * Recursively merges the destination object with the source.
+		 * If property `x` exists in both `dst` and `src`, src will be
+		 * overwritten.
+		 */
+		svc.mergeRecursive = function(dst, src) {
+			// for every property in destination item,
+			//   check if property exists in source item,
+			//   if property exists in src,
+			//     if both properties are objects, recurse with both properties
+			//       set current property in dst to return value of recurse
+			//     else overwrite dst with value of src
+			//   else do nothing
+			for(var i in dst) {
+				if(src.hasOwnProperty(i)) {
+					if((typeof src[i]) == (typeof dst[i])) {
+						if(typeof src[i] === 'object') {
+							dst[i] = svc.mergeRecursive(dst[i], src[i]);
+						} else {
+							dst[i] = src[i];
+						}
+					} else {
+						dst[i] = src[i];
+					} 
+				}
+			}
+			return dst;
+		};
+		
+		/**
 		 * Returns the day of the date :date of the month :monthIndex, 
 		 * given the year :year.
 		 * 
