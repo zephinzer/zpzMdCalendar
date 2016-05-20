@@ -16,6 +16,15 @@ angular.module('zpzMdCalendarDemo', [
 		zpzMdCalendarSvc
 	) {
 		var dataRows = dataSvc.getMockData();
+		$scope.config = {
+			view: {
+				display: {
+					navigation: {
+						year: false
+					}
+				}
+			}
+		};
 		$scope.days = zpzMdCalendarSvc.constant.days;
 		$scope.months = zpzMdCalendarSvc.constant.months;
 		$scope.dataModel = dataSvc.getMockData();
