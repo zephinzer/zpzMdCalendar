@@ -1,6 +1,6 @@
 {
   "name": "zpz-md-calendar",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Calendar module created based on Angular Material.",
   "main": "index.js",
   "directories": {
