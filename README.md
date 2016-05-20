@@ -34,6 +34,8 @@ angular.module('YourApp', [
 ]);
 ```
 
+
+
 ### Creating a View-Only Calendar
 In your HTML, use the `<zpz-md-calendar>` directive to add
 a calendar view there.
@@ -43,13 +45,15 @@ a calendar view there.
 ```
 See /demo/eg1.viewonly.html.
 
+
+
 ### Creating a Calendar with a Model
 Use the `ng-model` attribute to assign a local variable
 to collect information from the `<zpz-md-calendar>` directive
 
 ```html
 <zpz-md-calendar
-	ngModel='model'
+	ng-model='model'
 ></zpz-md-calendar>
 ```
 
@@ -72,11 +76,13 @@ angular.module('YourApp').controller('yourController', [
 You will be able to use `$scope.model` after `<zpz-md-calendar>` has 
 been initialised.
 
+
+
 ### Initializing Calendar with Data
-Add a `ngModel` attribute to the `<zpz-md-calendar>` directive.
+Add a `ng-model` attribute to the `<zpz-md-calendar>` directive.
 ```html
 <zpz-md-calendar
-	ngModel='model'
+	ng-model='model'
 ></zpz-md-calendar>
 ```
 
@@ -114,12 +120,17 @@ angular.module('YourApp').controller('yourController', [
 ```
 
 
-### Initializing Calendar with Configuration
-Add a `ngConfig` attribute to the `<zpz-md-calendar>` directive.
+
+### Initializing Calendar with Default Configuration
+The `ng-config` attribute takes in a configuration which will be merged with the
+default configuration. To use the default configuration, leaving `ng-config` empty
+will result in the user of the default configuration.
+
+
+#### Without `ng-config` specification
 ```html
 <zpz-md-calendar
-	ngConfig='config'
-	ngModel='model'
+	ng-model='model'
 ></zpz-md-calendar>
 ```
 
@@ -133,8 +144,77 @@ angular.module('YourApp').controller('yourController', [
 		zpzMdCalendarSvc
 		/// other dependencies ...
 	) {
+		/// other code ...
+	}
+]);
+```
+
+
+#### With `ng-config` specification
+```html
+<zpz-md-calendar
+	ng-config="config"
+	ng-model='model'
+></zpz-md-calendar>
+```
+
+```javascript
+angular.module('YourApp').controller('yourController', [
+	/// other dependencies ...
+	'zpzMdCalendarSvc',
+	/// other dependencies ...
+	function(
+		/// other dependencies ...
+		zpzMdCalendarSvc
+		/// other dependencies ...
+	) {
+		/// use defaults
 		$scope.config = zpzMdCalendarSvc.constant.config.default;
-		$scope.model = 
+		
+		/// other code ...
+		
+	}
+]);
+```
+
+
+
+### Initializing Calendar with a Custom Configuration
+[since v1.0.2]
+
+The `ng-config` variable if specified with an object merges the object properties
+with the default configuration. Specify only the options you use.
+
+```html
+<zpz-md-calendar
+	ng-config='config'
+	ng-model='model'
+></zpz-md-calendar>
+```
+
+```javascript
+angular.module('YourApp').controller('yourController', [
+	/// other dependencies ...
+	'zpzMdCalendarSvc',
+	/// other dependencies ...
+	function(
+		/// other dependencies ...
+		zpzMdCalendarSvc
+		/// other dependencies ...
+	) {
+		/// use a custom Configuration
+		/// this sets the year navigation buttons to not show
+		$scope.config = {
+			view: {
+				display: {
+					navigation: {
+						year: false
+					}
+				}
+			}
+		};
+		
+		/// other code ...
 	}
 ]);
 ```
@@ -158,8 +238,14 @@ demo
 ## Changelog
 ### v1
 #### v1.0
+##### v1.0.2
+Enhancement to allow for partial ngConfig specification such that the provided code
+in the partial configuration will be merged with the default configuration on 
+view load.
+
 ##### v1.0.1
-Bug fix to allow for optional ngModel and ngConfig 
+Bug fix to allow for optional ngModel and ngConfig
+ 
 ##### v1.0.0
 Initial release
 
