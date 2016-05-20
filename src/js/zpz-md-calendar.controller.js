@@ -21,6 +21,11 @@ angular.module('zpzMdCalendar')
 		
 		if($scope.ngConfig == undefined || $scope.ngConfig == null) {
 			$scope.ngConfig = zpzMdCalendarSvc.constant.config.default;
+		} else {
+			$scope.ngConfig = zpzMdCalendarUtilitySvc.mergeRecursive(
+				zpzMdCalendarSvc.constant.config.default,
+				$scope.ngConfig
+			);
 		}
 		if($scope.ngModel == undefined || $scope.ngModel == null) {
 			$scope.ngModel = [];
