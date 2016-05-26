@@ -152,6 +152,7 @@
 				ng-class="{
 					'today'				: (ngModel.current.today.year == ngModel.current.year) &&
 											(ngModel.current.today.month == ngModel.current.month) &&
+											(ngModel.view.data[week.index][$index].month == ngModel.current.month) &&
 											(ngModel.view.data[week.index][$index].date == ngModel.current.today.date),
 					'active'			: (ngModel.view.data[week.index][$index].month == ngModel.current.month) &&
 											(ngModel.view.data[week.index][$index].date == ngModel.current.date) &&
@@ -160,9 +161,13 @@
 											(ngModel.selected.month == ngModel.view.data[week.index][$index].month) &&
 											(ngModel.selected.date == ngModel.view.data[week.index][$index].date) &&
 											(ngConfig.control.selectLevels >= 1),
-					'inactive'			: (ngConfig.control.selectOtherMonths) && (ngModel.view.data[week.index][$index].month != ngModel.current.month),
-					'disabled'			: (!ngConfig.control.selectOtherMonths && ngConfig.view.display.showOtherMonths) && (ngModel.view.data[week.index][$index].month != ngModel.current.month),
-					'hidden'			: !(ngConfig.control.selectOtherMonths || ngConfig.view.display.showOtherMonths) && (ngModel.view.data[week.index][$index].month != ngModel.current.month),
+					'inactive'			: (ngConfig.control.selectOtherMonths) && 
+											(ngModel.view.data[week.index][$index].month != ngModel.current.month),
+					'disabled'			: ( (!ngConfig.control.selectOtherMonths && ngConfig.view.display.showOtherMonths) && 
+											(ngModel.view.data[week.index][$index].month != ngModel.current.month) ) ||
+											ngModel.view.data[week.index][$index].outOfRange,
+					'hidden'			: !(ngConfig.control.selectOtherMonths || ngConfig.view.display.showOtherMonths) && 
+											(ngModel.view.data[week.index][$index].month != ngModel.current.month),
 					'hover-scale'		: (ngConfig.view.display.date.hover.effect == 'scale'),
 					'hover-translate'	: (ngConfig.view.display.date.hover.effect == 'translate'),
 				}"
