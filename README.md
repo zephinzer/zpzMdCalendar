@@ -238,6 +238,13 @@ demo
 ## Changelog
 ### v1
 #### v1.0
+##### v1.0.4
+Fixed issue #1 where if X was the selected date and if X of the preceding month was 
+visible, the cell will also be visually marked as selected.
+
+##### v1.0.3
+Build of v1.0.2.
+
 ##### v1.0.2
 Enhancement to allow for partial ngConfig specification such that the provided code
 in the partial configuration will be merged with the default configuration on 
